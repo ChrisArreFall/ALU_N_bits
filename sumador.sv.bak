@@ -1,0 +1,30 @@
+module sumador #(parameter N)
+					 (input logic [N-1:0] a, b,
+					  input logic cin,
+					  output logic [N-1:0] s,
+					  output logic [3:0] flags);
+	
+	assign {flags[2],s}= a + b + cin;
+	
+	 
+	always_comb 
+		if (a<~b&&cin==1'b1) 
+			flags[0] <= 1'b1; 
+		else 
+			flags[0] <= 1'b0;
+  
+	always_comb
+		if (a==~b&&cin==1'b1) 
+			flags[1] <= 1'b1; 
+		else 
+			flags[1] <= 1'b0;
+		
+	always_comb
+		if (s[3]==1'b1) 
+			flags[3] <= 1'b1; 
+		else 
+			flags[3] <= 1'b0;
+	
+	
+	
+endmodule
