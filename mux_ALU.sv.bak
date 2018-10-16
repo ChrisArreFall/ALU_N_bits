@@ -1,0 +1,20 @@
+module mux_ALU #(parameter N)
+				(input logic [N-1:0] su, re, an, o, no, xo, lel, ril, lia, ria,
+				 input logic [3:0] selector,
+				 output logic [N-1:0] s);
+				 
+		always_comb
+			case(selector)
+				4'b0000: s = su;
+				4'b0001: s = re;
+				4'b0010: s = an;
+				4'b0011: s = o;
+				4'b0100: s = no;
+				4'b0101: s = xo;
+				4'b0110: s = lel;
+				4'b0111: s = ril;
+				4'b1000: s = lia;
+				4'b1001: s = ria;
+			default: s = su;
+			endcase
+endmodule

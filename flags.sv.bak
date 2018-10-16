@@ -1,0 +1,23 @@
+module flags#(parameter N)(input logic [N-1:0] A,B,SUM,result,
+									input logic Cout,
+									input logic [3:0] ALUControl,
+									output logic [3:0] FLAGS);
+				//flags 3 2 1 0
+				//      Z N C V
+				logic Z,N,C,V,V_0,V_1;
+				assign V = ~(ALUControl[0] ^ A[N-1] ^ B[N-1]) and (A[N-1]^SUM[N-1]) and (~ALUControl[1]);
+				assign C = (~ALUControl[N-1]) and Cout;
+				assign N = result[N-1];
+				
+				always_comb
+					begin
+						if(result==0)
+							begin
+								Z=1;
+							end
+						else
+							begin
+								Z=0;
+							end
+					end
+endmodule

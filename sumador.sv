@@ -1,5 +1,5 @@
-module sumador(input logic a, b, cin,
-					output logic s, cout);
+module sumador#(parameter N=8)(input logic a, b, cin,
+										 output logic s, cout);
 	logic p, g;
 	
 	assign p=a ^ b; 

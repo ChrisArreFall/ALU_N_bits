@@ -1,0 +1,12 @@
+module mux_Sumador #(parameter N)
+				(input logic [N-1:0] su, re,
+				 input logic [3:0] selector,
+				 output logic [N-1:0] s);
+				 
+		always_comb
+			case(selector)
+				4'b0000: s = su;
+				4'b0001: s = re;
+			default: s = su;
+			endcase
+endmodule
